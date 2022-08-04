@@ -24,7 +24,7 @@
 │   │       ├── echo_spider.py
 │   ├── P3
 │       ├── behavior_log_process.py
-│           ├── violation_check.py
+│           ├── noncompliance_check.py
 │           ├── utilities.py
 ├── dataset
 │	├── SkillExplorer_log
@@ -111,7 +111,8 @@ feeds test cases and outputs the behavior logs.
 
 ```/example/SkillExplorer_log```: Contain the raw conversation logs with Alexa skills that are generated from a SkillExplorer-based tester (https://vitas000.github.io/tool/)
 
-```cookies```: This folder will be automatically created if ```cookies``` path is not existed, and it is used to save cookies required by Alex developer console. To obtain this cookie, please register a developer test account from https://developer.amazon.com. For simplicity, we leave our test account in line 292 of ```test_case_execution.py```. Please replace it with yours if you have one.   
+```cookies```: This folder will be automatically created if ```cookies``` path is not existed. It is used to save cookies required by Alex developer console. To obtain this cookie, please register a developer test account from https://developer.amazon.com. For simplicity, we leave our test account in line 314 of ```test_case_execution.py```. Please replace it with yours if you have one.   
+(Note: you need to manully delete ```/cookies/console_cookie7.pkl``` file before generate new cookies)
 
 ```/library/chromedriver```: A webdriver that can launch chrome browser
 
@@ -121,9 +122,7 @@ feeds test cases and outputs the behavior logs.
 * input: behavior logs (see examples in /dataset/TYPES_example/behavior_logs), PP processing results (see examples in /dataset/TYPES_example/pp_process_results)
 * output: violations cases
 * usage: behavior_log_process.py [-h] [--t T] [--c C] [--region REGION] [--retention RETENTION]
-
 	enter the CATEGORY of violation cases you want to check  
- 
 	optional arguments:  
         -h, --help            show this help message and exit  
         --t T                 check violations in TYPE category (V1)  
@@ -131,11 +130,12 @@ feeds test cases and outputs the behavior logs.
         --region REGION       check violations in REGIONS category (V3)  
         --retention RETENTION   check violations in RETENTION category (V4)  
 
-```violation_check.py```: Invoked by ```behavior_log_process.py``` to check violations V1 to V4. 
+```noncompliance_check.py```: Invoked by ```behavior_log_process.py``` to check violations V1 to V4. 
 
 age_keywords.txt, birthday_keywords.txt, email_keywords.txt, location_keywords.txt, phoneno_keywords.txt, postcode_keywords.txt: Contain the keywords list for corresponding data types
 
-```test_cases.txt```: Contain the test cases
+```test_cases.txt```: Contain the test cases.
+(Note: all the test cases have been anonymized for the double-blind review.)
 
 ```Alexa_response_pattern.txt```: Contain Alexa's common response pattern
 
